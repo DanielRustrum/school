@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class DigitClass
+{
+	int base;
+	int[] digitArray;
+	int maxDigits;
+	int numDigits;
+	boolean overflow;
+	
+	public DigitClass(DigitClass copied)
+	{
+		int[] arrayToBeCopied;
+		
+		base = copied.base;
+		arrayToBeCopied = copied.digitArray;
+		maxDigits = copied.maxDigits;
+		numDigits = copied.numDigits;
+		overflow = copied.overflow;
+		
+		digitArray = copyArray(arrayToBeCopied);
+	}
+	
+	public DigitClass(int baseSet, int maxDigit, int decValSet)
+	{
+		base = baseSet;
+		maxDigits = maxDigit;
+		decToBase(decValSet);
+	}
+	
+	private int[] copyArray(int[] copiedArray)
+	{
+		int index;
+		int[] arrayToBeCopiedToo = {0};
+		for(index = 0;index < numDigits;index++)
+		{
+			arrayToBeCopiedToo[index] = copiedArray[index];
+		}
+		return arrayToBeCopiedToo;
+	}
+
+	private int[] decToBase(int decValue)
+	{
+		int index = 0;
+		while(decValue >= 0)
+		{
+			digitArray[index] = decValue%base;
+			decValue /= base;
+			index++;
+		}
+		numDigits = index;
+		return digitArray;
+	}
+	
+	//
+	public String getValueAsBase()
+	{
+		return null;
+	}
+	
+	//base 10
+	
+	public int getValueAsDecimal()
+	{
+		return 5;
+	}
+	
+	public int[] initalizeDigits()
+	{
+		int index;
+		for(index = 0; index>=numDigits;index++)
+		{
+			digitArray[index] = 0;
+		}
+		return digitArray;
+	}
+	
+	int intToPower(int base, int exponent)
+	{
+		if(exponent > 0)
+		{
+			return base*intToPower(base,exponent-1);
+		}
+		return 1;
+	}
+	
+	public boolean isZero()
+	{
+		return(numDigits <= 1 && digitArray[0] == 0);
+	}
+	
+}

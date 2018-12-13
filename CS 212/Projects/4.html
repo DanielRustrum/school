@@ -1,0 +1,22 @@
+<form action="4_sign_guestbook.php" method="POST">
+    <input id="name" placeholder="name" name="name">
+    <input id="note" placeholder="note" name="note">
+    <input type="submit" id="submit-btn">
+</form>
+
+<h1 id="submitted-msg">
+    <?php 
+        if(isset($_POST["note"])&&isset($_POST["name"])){
+            echo "Submitted";
+        }
+    ?>
+</h1>
+
+<div class="signature">
+    <pre class="note">
+<?php require './note.php';?>
+    </pre>
+    <div class="name">
+<?php require './name.php';?>
+    </div>
+</div>

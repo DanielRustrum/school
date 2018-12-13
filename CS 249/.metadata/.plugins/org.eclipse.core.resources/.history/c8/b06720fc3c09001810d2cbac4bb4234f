@@ -1,0 +1,7 @@
+package p2_Package;
+
+public class GenericArithmeticClass {
+    public int base;
+    private static int BASE_10;
+    public char[] digitArray;
+}

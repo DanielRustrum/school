@@ -1,0 +1,32 @@
+package p6_Package;
+
+public class IteratorClassMain {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        IteratorClassLL ICLL = new IteratorClassLL();
+        ICLL.insertPriorToIterator(6);
+        ICLL.insertAfterIterator(7);
+        ICLL.insertAfterIterator(7);
+//        ICLL.insertAfterIterator(7);
+//        ICLL.insertAfterIterator(7);
+//        ICLL.insertAfterIterator(7);
+        ICLL.moveNext();
+        
+        ICLL.movePrevious();
+        ICLL.retrieveAtCurrent();
+        ICLL.removeAtCurrent();
+        ICLL.setToBeginning();
+        ICLL.setToEnd();
+        ICLL.isAtEnd();
+        ICLL.isAtBeginning();
+        ICLL.isEmpty();
+        ICLL.clear();
+        
+        System.out.println(ICLL.toString());
+
+    }
+
+}

@@ -1,0 +1,5 @@
+package p10_Package;
+
+public class GenericHashClass<GenericData extends java.lang.Comparable<GenericData>> {
+
+}

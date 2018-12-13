@@ -1,0 +1,60 @@
+body {
+    overflow-y: hidden;
+}
+
+#page-style {
+    height: 100vh;
+}
+
+#nav {
+    float: left;
+    width: 25vw;
+    height: 100vh;
+    background-color: #6c7dec;
+}
+
+#nav > h1 {
+    text-align: center;
+}
+
+#nav > ul {
+    padding-left: 0px;
+    margin-top: 50px;
+    list-style-type: none; 
+}
+
+#nav > ul > li {
+    text-align: center;
+    margin-top: 25px;
+    color: black;
+    font-size: 30px;
+}
+
+#nav > ul > li:hover {
+    color: grey; 
+}
+
+#content {
+    float: left;
+    width: 48.82vw;
+    height: 100vh;
+    background-color: #ff33ff;
+}
+
+#content > img {
+    width: 100%;
+    height: auto;
+}
+
+#ad {
+    float: right;
+    width: 25vw;
+    height: 100vh;
+    background-color: #ced11d;
+}
+
+#ad > img {
+    margin-top: 100px;
+    width: 100%;
+    height: auto;
+}

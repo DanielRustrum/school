@@ -1,0 +1,84 @@
+Default constructor for anything
+Initialization constructor(s) for anything
+Copy constructor for anything
+Generic classes for anything
+
+Iterator - Linked List or Array
+InsertPriorToIterator
+InsertAfterIterator
+moveNext
+movePrevious, recursive
+retrieveAtCurrent
+removeAtCurrent
+setToBeginning
+setToEnd, recursive
+isAtEnd
+isAtBeginning
+isEmpty
+clear
+
+Queue - linked or array
+enqueue, dequeue
+peekFront
+clear
+
+Stack - linked or array
+push, pop
+peekTop
+clear
+
+BST - linked
+insert, recursive
+remove, recursive
+removeFromMax, recursive
+search, recursive
+display - inorder, preorder, postorder
+clearTree
+isEmpty
+
+Comparable
+compareTo anything : You need comparable for Generic
+  - integers, doubles, strings, Generic etc.
+
+AVL Tree
+rotateLeft, rotateRight
+findTreeHeight, findLeftHeight, findRightHeight, recursive
+
+Heap Class -array only
+addItem, recursive
+removeItem, removeLastNode
+bubbleUp, trickleDown, array or node? (ask Michael in class)
+findLeftHeight, findRightHeight
+isEmpty
+
+Hash Class
+probing - linear, quadratic
+use of other data structures in bins
+add, remove, find
+generateHash **********gives array and restrictions (create own algorithm)
+
+File Operations
+getADouble
+getAnInt
+getALine
+
+Graphs (Matrix portion also may be on test)
+given a graph or graph data
+- create an adjacency matrix table
+- walk through a BFS or DFS
+
+General
+toLowerCase, toUpperCase
+toPower - iterative or recursive
+findCharInString
+binarySearch
+
+Be able to analyze or describe:
+Red-Black,
+ 2-3-4, 2-3 trees
+any kind of array or linked list structure
+any kind of BST
+any kind of heap
+any kind of hash table
+-------------------------------------------------------
+****Be able to write a StringCompareTo ****** 

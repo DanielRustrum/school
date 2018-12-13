@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class DigitClass
+{
+	int base;
+	int[] digitArray;
+	int maxDigits;
+	int numDigits;
+	boolean overflow;
+}

@@ -1,0 +1,336 @@
+package p2_Package;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class BaseClass implements Comparable<BaseClass>
+{
+    
+    /**
+     *  holds base of given value
+     */
+    public int base;
+    
+    /**
+     *  base 10 constant used in code
+     */
+    private static final int BASE_10 = 10;
+    
+    /**
+     *  array for holding digits in the given number
+     *  The Base range is '0'-'F'
+     */
+    public char[] digitArray;
+    
+    /**
+     *  highest base value that can be used
+     */
+    private static final int MAX_BASE_VALUE = 16;
+    
+    /**
+     *  maximum number of digits that can be held for this value
+     */
+    public int maxDigits;
+    
+    /**
+     *  lowest base value that can be used
+     */
+    private static final int MIN_BASE_VALUE = 2;
+    
+    /**
+     *  current number of digits held for this value
+     */
+    public int numDigits;
+    
+    /**
+     *  a flag set if register is overflowed by any operation
+     */
+    public boolean overflow;
+    
+    /**
+     * Copy constructor for the BaseClass
+     * 
+     * @param copied - BaseClass object to be copied to this object
+     */
+    BaseClass(BaseClass copied) {
+        base = copied.base;
+        digitArray = copyArray(copied.digitArray, copied.maxDigits);
+        maxDigits = copied.maxDigits;
+        numDigits = copied.numDigits;
+        overflow = copied.overflow;
+    }
+    
+    /**
+     * Default Constructor
+     * 
+     * @param baseSet - sets base of BaseClass
+     * @param maxDigitSet - sets maximum number of digits of value
+     * @param decValSet - accepts a decimal value to be stored as the BaseClass value
+     */
+    BaseClass(int baseSet, int maxDigitsSet, String decValSet){
+        base = baseSet;
+        maxDigits = maxDigitsSet;
+        decToBase(decValSet);
+    }
+    
+    /**
+    * Copies an array for the copy constructor
+    * <p>
+    * @param copiedArray takes in the array to be copied
+    * @return arrayToBeCopied - returns a copied array for the copy constructor
+    */
+   private char[] copyArray(char[] copiedArray, int length)
+   {
+       int index;
+       char[] arrayToBeCopiedToo = new char[length];
+       for(index = 0;index < length;index++)
+       {
+           arrayToBeCopiedToo[index] = copiedArray[index];
+       }
+       return arrayToBeCopiedToo;
+   }
+    
+    /**
+     * Converts given positive decimal integer as string inputs to the specified
+     * base as a character array within the object
+     * <p>
+     * Exception: if value is outside of base range, set overflow flag
+     * 
+     * @param decValue - decimal value as string to be converted
+     * @return null - if base is not between 1 and 17
+     * @return char[] - character array holding a converted value
+     */
+    private char[] decToBase(String decValue) 
+    {
+        int index;
+        
+        if(base < MIN_BASE_VALUE || MAX_BASE_VALUE > base)
+        {
+            overflow = true;
+        }
+        
+        initializeDigits();
+        
+        for(index = 0; index < decValue.length(); index++)
+        {
+            digitArray[index] = decValue.charAt(index);
+        }
+        numDigits = index;
+
+        if(base > BASE_10)
+        {
+            return convertToHigherBase(BASE_10,base,digitArray);
+        }
+        else 
+        {
+            return convertToLowerBase(BASE_10,base,digitArray);
+        }
+    }
+    
+    /**
+     * Accesses the value as decimal
+     * <p>
+     * Exception: If value is overflowed, returns 0
+     * 
+     * @return int - value in decimal form
+     */
+    public int getValueAsDecimal()
+    {      
+        int index;
+        String result = 0;
+        char[] tempDigitHolder = digitArray;
+        
+        if(base > BASE_10)
+        {
+            tempDigitHolder = convertToLowerBase(BASE_10,base, tempDigitHolder);
+        }
+        else
+        {            
+            tempDigitHolder = convertToHigherBase(BASE_10,base, tempDigitHolder);
+        }
+        
+        for(index = 0; index < maxDigits; index++)
+        {
+            result += intToDigit(tempDigitHolder[index]);
+        }
+        return (int)result;
+    }
+    
+    /**
+     * Accesses the digit value directly
+     * <p>
+     * Exception: If Value is overflowed, returns dummy string
+     * 
+     * @return string - in base form
+     */
+    public String getValueAsBase()
+    {
+        int index;
+        String result = null;
+        char[] tempDigitHolder = digitArray;
+        
+        if(base > BASE_10)
+        {
+            tempDigitHolder = convertToHigherBase(BASE_10,base, tempDigitHolder);
+        }
+        else
+        {            
+            tempDigitHolder = convertToLowerBase(BASE_10,base, tempDigitHolder);
+        }
+        
+        for(index = 0; index < maxDigits; index++)
+        {
+            result += tempDigitHolder;
+        }
+        return result;
+    }
+    
+    /**
+     * 
+     */
+    private char[] convertToLowerBase(int base, int toLowerBase, char[] arrayToBeConverted)
+    {
+        int index;
+        int tempNumberHolder = 0;
+        
+        for(index = 0; index < maxDigits; index++)
+        {
+            tempNumberHolder = digitToInt(arrayToBeConverted[index]);
+            tempNumberHolder = toLowerBase % base;
+            toLowerBase /= base; 
+            arrayToBeConverted[index] = intToDigit(tempNumberHolder);
+        }
+        
+        return arrayToBeConverted;
+    }
+    
+    /**
+     * 
+     */
+    private char[] convertToHigherBase(int base, int toHigherBase, char[] arrayToBeConverted)
+    {
+        int index = 0;
+        int tempNumberHolder = 0;
+        int maxNumberAtPosition = 0;
+        int productOfMaxAndDigitAtPosition = 0;
+        int convertedValue = 0;
+        
+        for(index = 0; index < maxDigits; index++)
+        {
+            tempNumberHolder = digitToInt(arrayToBeConverted[index]);
+            tempNumberHolder = toLowerBase % base;
+            toLowerBase /= base; 
+            arrayToBeConverted[index] = intToDigit(tempNumberHolder);
+        }
+        
+        while(index < maxDigits && !isZero())
+        {
+            maxNumberAtPosition = intToPower(base, index);
+            productOfMaxAndDigitAtPosition = maxNumberAtPosition * digitArray[index];
+            convertedValue += productOfMaxAndDigitAtPosition;
+            index++;
+        }
+        
+        return arrayToBeConverted;
+    }
+    
+    /**
+     * Turns character digit to interger value
+     * 
+     * @param digit - character digit to be processed
+     * @return int - value of character digit
+     */
+    private int digitToInt(char digit)
+    {
+        // Incomplete
+        if(digit > 61)
+        {
+            return (int)(digit + '0');
+        }
+        return (int)(digit);
+    }
+    
+    /**
+     * Translate integer to character digit
+     * 
+     * @param digitValue - integer value to be processed
+     * @return char - value of digit
+     */
+    private char intToDigit(int digitValue)
+    {
+        if(digitValue > 9)
+        {
+            return (char)(digitValue + 0);
+        }
+        return (char)(digitValue);
+    }
+    
+    /**
+     * Overrides toString method and provides output as both the base and a decimal value
+     * <p>
+     * Note: Output must be in the form(base number) decimal number
+     * 
+     * @return string - result as specified
+     */
+    public String toString()
+    {
+        String result;
+        result = '(' + getValueAsBase() + ") " + getValueAsDecimal();
+        return result;
+    }
+    
+    /**
+     * Creates new digit array and zeroes out the array
+     * 
+     * @return int[] - intialized with all zeros
+     */
+    public int compareTo(BaseClass value)
+    {
+        // imcomplete
+        return 0;
+    }
+    
+    /**
+     * Implements the compareTo required of the Comparable class
+     * 
+     * @param value - BaseClass data to be compared with this
+     * @return int - greater than: +1, equal to: 0, less than: -1
+     */
+    public char[] initializeDigits()
+    {
+        int index;
+        digitArray = new char[maxDigits];
+        for(index = 0; index<maxDigits;index++)
+        {
+            digitArray[index] = '0';
+        }
+        return digitArray;
+    }
+    
+    /**
+     * Checks for base value zero
+     * 
+     * @return boolean - true if the number of digits is one or less, and LSD is zero
+     */
+    public boolean isZero()
+    {
+        return(numDigits <= 1 && digitArray[0] == '0');
+    }
+    
+    /**
+     * Calculates integer base value to exponent value
+     * 
+     * @param base - value to be multiplied by itself
+     * @param exponent - number of times the base value is to be multiplied
+     * @return int - result of calculation
+     */
+    int intToPower(int base, int exponent)
+    {
+        if(exponent > 0)
+        {
+            return base*intToPower(base,exponent-1);
+        }
+        return 1;
+    }
+}

@@ -1,0 +1,14 @@
+package p6_Package;
+
+public class IteratorClassLL
+{
+    private class NodeClass
+    {
+        public int value;
+        public NodeClass nextNode;
+        NodeClass(int inVal)
+        {
+            value = inVal;
+        }
+    }
+}

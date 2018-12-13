@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;p9_Package.BT_HeapClass_Assignment.java&apos; to &apos;BT_HeapClass.java&apos;&#x0A;- Original project: &apos;project_9&apos;&#x0A;- Original element: &apos;p9_Package.BT_HeapClass_Assignment.java&apos;&#x0A;- Renamed element: &apos;p9_Package.BT_HeapClass.java&apos;" description="Rename compilation unit &apos;BT_HeapClass_Assignment.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;p9_Package{BT_HeapClass_Assignment.java" name="BT_HeapClass.java" references="false" stamp="1523321388049" version="1.0"/>
+</session>

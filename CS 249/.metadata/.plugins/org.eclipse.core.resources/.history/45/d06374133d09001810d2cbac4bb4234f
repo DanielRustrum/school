@@ -1,0 +1,16 @@
+package p2_Package;
+
+public class BaseClase {
+    public int base;
+    private static int BASE_10;
+    public char[] digitArray;
+    private static int MAX_BASE_VALUE;
+    public int maxDigits;
+    private static int MIN_BASE_VALUE;
+    public int numDigits;
+    public boolean overflow;
+    
+    public BaseClass(BaseClase Copied) {
+        //Copy
+    }
+}

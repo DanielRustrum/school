@@ -1,0 +1,63 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class DigitClass
+{
+	int base;
+	int[] digitArray;
+	int maxDigits;
+	int numDigits;
+	boolean overflow;
+	
+	public DigitClass(DigitClass copied)
+	{
+		
+	}
+	
+	public DigitClass(int baseSet, int maxDigit, int decValSet)
+	{
+		this.base = baseSet;
+		this.maxDigits = maxDigit;
+	}
+	
+	private int[] decToBase(int decValue)
+	{
+		return null;
+	}
+	
+	public String getValueAsBase()
+	{
+		return null;
+	}
+	
+	public int getValueAsDecimal()
+	{
+		return 5;
+	}
+	
+	public int[] initalizeDigits()
+	{
+		int index;
+		for(index = 0; index>=this.numDigits;index++)
+		{
+			this.digitArray[index] = 0;
+		}
+		return this.digitArray;
+	}
+	
+	int intToPower()
+	{
+		return 5;
+	}
+	
+	public boolean isZero()
+	{
+		return true;
+	}
+}

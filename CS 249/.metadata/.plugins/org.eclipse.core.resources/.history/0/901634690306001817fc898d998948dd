@@ -1,0 +1,139 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class DigitClass
+{
+	int base;
+	int[] digitArray;
+	int maxDigits;
+	int numDigits;
+	boolean overflow;
+	
+	public DigitClass(DigitClass copied)
+	{
+		
+		base = copied.base;
+		maxDigits = copied.maxDigits;
+		numDigits = copied.numDigits;
+		overflow = copied.overflow;
+		
+		digitArray = copyArray(copied.digitArray);
+	}
+	
+	public DigitClass(int baseSet, int maxDigit, int decValSet)
+	{
+		base = baseSet;
+		maxDigits = maxDigit;
+		initalizeDigits();
+		decToBase(decValSet);
+	}
+	
+	private int[] copyArray(int[] copiedArray)
+	{
+		int index;
+		int[] arrayToBeCopiedToo = {0};
+		for(index = 0;index < numDigits;index++)
+		{
+			arrayToBeCopiedToo[index] = copiedArray[index];
+		}
+		return arrayToBeCopiedToo;
+	}
+
+	private int[] decToBase(int decValue)
+	{
+		int index = 0;
+		while(decValue >= 0)
+		{
+			digitArray[index] = decValue%base;
+			decValue /= base;
+			index++;
+		}
+		numDigits = index;
+		return digitArray;
+	}
+	
+	//
+	public int getValueAsDecimal()
+	{
+		// Variables For Overflow Check
+		int overflowedResult = 0;
+		
+		// Variables For Conversion
+		int index = 0;
+		int maxNumberAtPosition = 0;
+		int productOfMaxAndDigitAtPosition = 0;
+		int convertedValue = 0;
+		
+		// Check Overflow And Return Result
+		if(overflow)
+		{
+			return overflowedResult;
+		}
+		
+		// Convert Base To Decimal
+		while(index < numDigits && !isZero())
+		{
+			maxNumberAtPosition = intToPower(base, index);
+			productOfMaxAndDigitAtPosition = maxNumberAtPosition * digitArray[index];
+			convertedValue += productOfMaxAndDigitAtPosition;
+			index++;
+		}
+		
+		//	Return Result
+		return convertedValue;
+	}
+
+	public String getValueAsBase()
+	{
+		// Check For Overflow and Return Result
+		String overflowedResult = "Value has Overflowed";
+		if(overflow)
+		{
+			return overflowedResult;
+		}
+		
+		// Format Base As String	
+		int index;
+		String valueAsBase = "";
+		String tempIntHolder = "";
+		
+		for(index = maxDigits; index>0; index--)
+		{
+			tempIntHolder = Integer.toString(digitArray[index]);
+			valueAsBase += tempIntHolder;
+		}
+		
+		// Return Formatted Result
+		return valueAsBase;
+	}
+	
+	public int[] initalizeDigits()
+	{
+		int index;
+		for(index = 0; index>=numDigits;index++)
+		{
+			digitArray[index] = 0;
+		}
+		return digitArray;
+	}
+	
+	int intToPower(int base, int exponent)
+	{
+		if(exponent > 0)
+		{
+			return base*intToPower(base,exponent-1);
+		}
+		return 1;
+	}
+	
+	public boolean isZero()
+	{
+		return(numDigits <= 1 && digitArray[0] == 0);
+	}
+}

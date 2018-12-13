@@ -1,0 +1,218 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class ArithmeticClass {
+
+
+    /**
+     * Has No Action, is empty
+     */
+    public ArithmeticClass()
+    {
+        //No Action
+    }
+
+    /**
+     * Adds two registers in their base and returns the sum of those two numbers
+     * 
+     * @param register_1 - first of two values to be processed
+     * @param register_2 - second of two values to be processed
+     * @return DigitClass - sum of registers
+     * @return null - returns if bases are not the same
+     */
+    public DigitClass addRegisters(DigitClass register_1, DigitClass register_2)
+    {
+        // Variables For Adding
+        int biggerNumDigit;
+        int biggerMaxDigit;
+        int[] tempNumberHolder;
+        DigitClass addingResult;
+        
+        int sumOfRegisters = 0;
+        int carryOfRegisters = 0;
+        int index = 0;
+        tempNumberHolder = register_1.digitArray;
+
+        // Check if bases are the same
+        if(register_1.base != register_2.base){
+            return null;
+        }
+	
+        //Get Bigger NumDigit
+        biggerNumDigit = getMax(register_1.numDigits,register_2.numDigits);
+	
+        // Get Bigger MaxDigit
+        biggerMaxDigit = getMax(register_1.maxDigits,register_2.maxDigits);
+
+        //Add Numbers
+        while(index<biggerNumDigit)
+        {
+            // Add numbers at position With Overflow
+            sumOfRegisters = register_1.digitArray[index] + register_2.digitArray[index];
+			
+            // Add Overflow
+            sumOfRegisters += carryOfRegisters;
+		
+            // Get Remainder
+            tempNumberHolder[index] = sumOfRegisters % register_1.base;
+			
+            // Get Carry
+            carryOfRegisters = sumOfRegisters / register_1.base;
+			
+            // Increment index
+            index++;
+        }
+	
+        //Copy DigitClass
+        addingResult = new DigitClass(register_1);
+
+        //Determine If there still is overflow and Surpasses MaxDigit
+        if(carryOfRegisters != 0 && index > biggerMaxDigit)
+        {
+            addingResult.overflow = true;
+		
+        }
+	
+        // Set digitArray and maxDigit
+        addingResult.maxDigits = biggerMaxDigit;
+        addingResult.digitArray = tempNumberHolder;
+
+        // Return Copied DigitClass
+        return addingResult;
+    }
+
+    /**
+     * Subtract two registers from one another and returns the difference
+     * 
+     * @param register_1 - first of two values to be processed 
+     * @param register_2 - second of two values to be processed
+     * @return DigitClass - the positive difference between values
+     * @return null - returns If bases are not the same or register_2 is bigger than register_1
+     */
+    public DigitClass subtractRegisters(DigitClass register_1, DigitClass register_2)
+    {
+        // Variables For Subtraction
+        int biggerNumDigit;
+        int biggerMaxDigit;
+        int[] tempNumberHolder;
+        DigitClass subtractionResult;
+        boolean failureCheckOne;
+        boolean failureCheckTwo;
+
+        int differenceOfRegisters = 0;
+        boolean borrowFlag = false;
+        int index = 0;
+        tempNumberHolder = register_1.digitArray;
+
+        //Get Bigger NumDigit
+        biggerNumDigit = getMax(register_1.numDigits,register_2.numDigits);
+
+        // Get Bigger MaxDigit
+        biggerMaxDigit = getMax(register_1.maxDigits,register_2.maxDigits);
+        
+        // Check if bases are the same and Register 2 is greater
+        failureCheckOne = register_1.base != register_2.base;
+        failureCheckTwo = register_2.numDigits == biggerNumDigit;
+        if(failureCheckOne && failureCheckTwo){
+            return null;
+        }
+
+        //Add Numbers
+        while(index<biggerNumDigit)
+        {
+            //Get Remainder
+            differenceOfRegisters = register_1.digitArray[index] - register_2.digitArray[index];
+
+            // Determine If Barrow Flag is set and subtract one to operation
+            if(borrowFlag)
+            {
+                differenceOfRegisters -= 1;
+                borrowFlag = false;
+            }
+
+            //Determine If Difference Of Registers Is Negative
+            if(differenceOfRegisters < 0)
+            {			
+                //Add Base To Make Number Positive
+                differenceOfRegisters += register_1.base;
+
+                // Set Barrow Flag
+                borrowFlag = true;
+            }
+
+            //Set To Number Holder
+    	    tempNumberHolder[index] = differenceOfRegisters;
+
+    	    // Increment index
+    	    index++;
+        }
+
+        //Copy DigitClass
+        subtractionResult = new DigitClass(register_1);
+
+        // Set digitArray and maxDigit
+        subtractionResult.maxDigits = biggerMaxDigit;
+        subtractionResult.digitArray = tempNumberHolder;
+
+        // Return Copied DigitClass
+        return subtractionResult;
+    }
+
+    /**
+     * Class is Not Fully Implemented
+     * 
+     * @param register_1 - first of two values to be processed 
+     * @param register_2 - second of two values to be processed
+     * @return null - returns when called
+     */
+    public DigitClass multiplyRegisters(DigitClass register_1, DigitClass register_2)
+    {
+        return null;
+    }
+
+    /**
+     * Class is Not Fully Implemented
+     * 
+     * @param register_1 - first of two values to be processed
+     * @param register_2 - second of two values to be processed
+     * @return null - returns when called
+     */
+    public DigitClass divideRegistersToQuotient(DigitClass register_1, DigitClass register_2)
+    {
+        return null;
+    }
+
+    /**
+     *  Class is Not Fully Implemented
+     * 
+     * @param register_1 - first of two values to be processed
+     * @param register_2 - second of two values to be processed
+     * @return null - returns when called
+     */
+    public DigitClass divideRegistersToRemainder(DigitClass register_1, DigitClass register_2)
+    {
+        return null;
+    }
+
+    /**
+     * Finds Highest of two values being compared
+     * 
+     * @param valOne - one value of two that is to be compared
+     * @param valTwo - the second of two values to be compared
+     * @return int - returns value that is the highest
+     */
+    private int getMax(int valOne, int valTwo)
+    {
+        if(valOne > valTwo)
+        {
+            return valOne;
+        }
+        return valTwo;
+    }
+}

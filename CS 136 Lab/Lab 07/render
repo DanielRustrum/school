@@ -1,0 +1,6 @@
+#!/bin/bash
+
+javac LightsOut.java
+javac LightsOutFileLoader.java
+javac UnsupportedLightsOutFileException.java
+java LightsOutPlayer

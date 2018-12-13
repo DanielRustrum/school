@@ -1,0 +1,74 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class ArithmeticClass {
+	
+
+	public ArithmeticClass()
+	{
+		//No Action
+	}
+	
+	public DigitClass addRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		// Variables For Adding
+		int index;
+		int biggerNumDigit;
+		int[] tempNumberHolder;
+		
+		// Check if bases are the same
+		if(register_1.base != register_2.base){
+			return null;
+		}
+		
+		//Get Biggest Number
+		biggerNumDigit = getMax(register_1.numDigits,register_2.numDigits);
+		
+		//Add Numbers
+		for(index = 0;index<biggerNumDigit;index++)
+		{
+			// Add numbers at position With Overflow
+		
+			
+			//Grab Overflow
+			
+		}
+		
+		//Determine If there still is overflow
+	}
+	
+	public DigitClass subtractRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		
+	}
+	
+	public DigitClass multiplyRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass divideRegistersToQuotient(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass divideRegistersToRemainder(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	private int getMax(int valOne, int valTwo)
+	{
+		if(valOne > valTwo)
+		{
+			return valOne;
+		}
+		return valTwo;
+	}
+}

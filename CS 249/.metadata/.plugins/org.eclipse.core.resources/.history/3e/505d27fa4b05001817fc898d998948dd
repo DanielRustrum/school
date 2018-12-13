@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class ArithmeticClass {
+	
+	
+	public ArithmeticClass()
+	{
+		
+	}
+	
+	public DigitClass addRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+}

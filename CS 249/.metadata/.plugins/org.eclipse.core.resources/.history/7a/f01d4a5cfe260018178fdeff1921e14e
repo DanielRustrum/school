@@ -1,0 +1,265 @@
+package p6_Package;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class IteratorClassLL
+{
+    /**
+     * iterator head reference
+     */
+    NodeClass headRef;
+    /**
+     * iterator cursor reference
+     */
+    NodeClass cursorRef;
+    /**
+     * Provides constant -999999 for access failure messaging
+     */
+    private final int FAILED_ACCESS = -999999;
+    
+    /**
+     * Default Constructor
+     */
+    IteratorClassLL()
+    {
+        headRef = new NodeClass(9);
+        cursorRef = headRef;
+    }
+    
+    /**
+     * Copy Constructor
+     * 
+     * @param copied
+     */
+    IteratorClassLL(IteratorClassLL copied)
+    {
+        NodeClass workingRef = copied.headRef;
+        headRef = new NodeClass(copied.headRef.value);
+        cursorRef = headRef;
+        while(workingRef.nextNode != null)
+        {
+            NodeClass nextNewNode = new NodeClass(workingRef.nextNode.value);
+            cursorRef.nextNode = nextNewNode;
+            cursorRef = cursorRef.nextNode;
+            workingRef = workingRef.nextNode;
+        }
+
+    }
+    
+    /**
+     * Inserts item prior to iterator location in list and Iterator reference points at inserted item after completion
+     * 
+     * @param newValue
+     */
+    public void insertPriorToIterator(int newValue)
+    {
+        movePrevious();
+        insertAfterIterator(newValue);
+    }
+    
+    /**
+     * Inserts item after iterator location in list and Iterator reference points at inserted item after completion
+     * 
+     * @param newValue
+     */
+    public void insertAfterIterator(int newValue)
+    {
+        NodeClass newNode = new NodeClass(newValue);
+        newNode.nextNode = cursorRef.nextNode;
+        cursorRef.nextNode = newNode;
+        moveNext();
+    }
+    
+    /**
+     * Move iterator cursor to next location if not currently at end
+     */
+    public void moveNext()
+    {
+        if(isAtEnd())
+        {
+            cursorRef = cursorRef.nextNode;            
+        }
+    }
+    
+    /**
+     * Move iterator cursor to previous location if not currently at beginning 
+     */
+    public void movePrevious()
+    {
+        NodeClass workingRef = headRef;
+        while(workingRef.nextNode != null)
+        {
+            if(workingRef.nextNode == cursorRef)
+            {
+                cursorRef = workingRef;            
+            }
+            else
+            {
+                workingRef = workingRef.nextNode;
+            }
+        }
+    }
+    
+    /**
+     * Threw Error nullPointerError When Using WorkingRef
+     * 
+     * @param workingRef
+     */
+    private void movePreviousHelper(NodeClass workingRef)
+    {
+        // This doesn't seem to work when using workingRef as a parameter
+    }
+    
+    /**
+     * Gets value at current location of iterator
+     * 
+     * @return
+     */
+    public int retrieveAtCurrent()
+    {
+        if(isEmpty())
+        {
+            return FAILED_ACCESS;
+        }
+        return cursorRef.value;
+    }
+    
+    /**
+     * Removes and returns value from list at current iterator location 
+     * 
+     * @return
+     */
+    public int removeAtCurrent()
+    {
+        if(isEmpty())
+        {
+            return FAILED_ACCESS;
+        }
+        int cursorValue = cursorRef.value;
+        if(cursorRef.nextNode != null)
+        {
+            movePrevious();
+            cursorRef.nextNode = cursorRef.nextNode.nextNode;
+        }
+        else
+        {
+            cursorRef = null;
+        }
+        return cursorValue;
+    }
+    
+    /**
+     * Sets iterator to beginning of list
+     */
+    public void setToBeginning()
+    {
+        cursorRef = headRef;
+    }
+    
+    /**
+     * Sets iterator to end of list by calling recursive setToEndHelper
+     */
+    public void setToEnd()
+    {
+         setToEndHelper(headRef);
+    }
+    
+    /**
+     * sets cursor to end of list using recursion 
+     * 
+     * @param workingRef
+     */
+    private void setToEndHelper(NodeClass workingRef)
+    {
+        if(workingRef.nextNode != null)
+        {
+            cursorRef = workingRef.nextNode;
+            setToEndHelper(workingRef.nextNode);
+        }
+    }
+    
+    /**
+     * checks for iterator at end of list
+     * 
+     * @return
+     */
+    public boolean isAtEnd()
+    {
+        return cursorRef.nextNode == null;
+    }
+    
+    /**
+     * checks for iterator at beginning of list
+     * 
+     * @return
+     */
+    public boolean isAtBeginning()
+    {
+        return cursorRef == headRef;
+    }
+    
+    /**
+     * checks for empty list
+     * 
+     * @return
+     */
+    public boolean isEmpty()
+    {
+        return headRef == null;
+    }
+    
+    /**
+     * Clears iterator list
+     */
+    public void clear()
+    {
+        headRef = null;
+    }
+    
+    /**
+     * provides array data as a string, including indication of current element, using recursive toStringHelper method 
+     * 
+     * @return a formatted version of the list
+     */
+    public String toString()
+    {
+        return headRef.value + toStringHelper(headRef);
+    }
+    
+    /**
+     * recursive helper method that creates string from data with cursor indicator at appropriate location and no space at end of string 
+     * 
+     * @param workingRef
+     * @return
+     */
+    private String toStringHelper(NodeClass workingRef)
+    {
+        @SuppressWarnings("unused")
+        String combinedString = "";
+        if(cursorRef.nextNode != null && headRef != null)
+        {
+            System.out.println(workingRef.nextNode);
+            combinedString += toStringHelper(workingRef.nextNode);
+        }
+        // fine
+        if(workingRef == cursorRef)
+        {
+            return " |" + workingRef.value + "|";
+        }
+        return " " + workingRef.value;
+    }
+    
+    
+    
+    private class NodeClass
+    {
+        public int value;
+        public NodeClass nextNode = null;
+        NodeClass(int inVal)
+        {
+            value = inVal;
+        }
+    }
+}

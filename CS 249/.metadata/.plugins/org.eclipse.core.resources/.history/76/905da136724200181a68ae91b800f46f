@@ -1,0 +1,180 @@
+package p10_Package;
+
+public class GenericHashClass<GenericData extends java.lang.Comparable<GenericData>> {
+    private final int DEFAULT_TABLE_SIZE = 10;
+    private final int DEFAULT_NUM_HASH_DIGITS = 6;
+    public final int ITEM_NOT_FOUND = -1;
+    public static final int LINEAR_PROBING = 101;
+    public static final int QUADRATIC_PROBING = 102;
+    private int numHashDigits;
+    private int tableSize;
+    private int probeFlag;
+    private Object[] tableArray;
+    
+    public GenericHashClass(int inTableSize,
+                            int inHashDigits,
+                            int inProbeFlag)
+    {
+        int index;
+        tableSize = inTableSize;
+        numHashDigits = inHashDigits;
+        probeFlag = inProbeFlag;
+        tableArray = new Object[tableSize];
+        for(index = 0; index < tableSize; index++)
+        {
+            tableArray[index] = null;
+        }
+    }
+    
+    public GenericHashClass(GenericHashClass copied)
+    {
+        int index;
+        tableSize = copied.tableSize;
+        numHashDigits = copied.numHashDigits;
+        probeFlag = copied.probeFlag;
+        for(index = 0; index < tableSize; index++)
+        {
+            tableArray[index] = copied.tableArray[index];
+        }
+    }
+    
+    public boolean addItem(GenericData newItem)
+    {
+        int hashIndex, loopIndex = 1, hashPower, quadHashStorage;
+        final int quadraticPower = 2;
+        boolean foundItem = false;
+        hashIndex = generateHash(newItem);
+        quadHashStorage = hashIndex;
+        while(!foundItem && hashIndex < tableSize)
+        {
+            if(tableArray[hashIndex] == null)
+            {
+                tableArray[hashIndex] = newItem;
+                return true;
+            }
+            if(probeFlag == QUADRATIC_PROBING)
+            {
+                hashPower = toPower(loopIndex, quadraticPower);
+                hashIndex = quadHashStorage + hashPower;
+            }
+            else
+            {
+                hashIndex++;
+            }
+            loopIndex++;
+        }
+        return false;
+    }
+    
+    public GenericData removeItem(GenericData toBeRemoved)
+    {
+        int itemIndex;
+        GenericData itemFound;
+        itemIndex = findItemIndex(toBeRemoved);
+        itemFound = (GenericData)tableArray[itemIndex];
+        tableArray[itemIndex] = null;
+        return itemFound;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public GenericData findItem(GenericData searchItem)
+    {
+        int hashIndex, loopIndex = 1, hashPower, quadHashStorage;
+        final int quadraticPower = 2;
+        boolean foundItem = false;
+        //hashIndex = generateHash(searchItem);
+        quadHashStorage = hashIndex;
+        while(!foundItem && hashIndex < tableSize)
+        {
+            if(tableArray[hashIndex] == searchItem)
+            {
+                return (GenericData)tableArray[hashIndex];
+            }
+            if(probeFlag == QUADRATIC_PROBING)
+            {
+                hashPower = toPower(loopIndex, quadraticPower);
+                hashIndex = quadHashStorage + hashPower;
+            }
+            else
+            {
+                hashIndex++;
+            }
+            loopIndex++;
+        }
+        return null;
+    }
+    
+    private int findItemIndex(GenericData searchItem)
+    {
+        int hashIndex, loopIndex = 1, hashPower, quadHashStorage;
+        final int quadraticPower = 2;
+        boolean foundItem = false;
+        hashIndex = generateHash(searchItem);
+        quadHashStorage = hashIndex;
+        while(!foundItem && hashIndex < tableSize)
+        {
+            if(tableArray[hashIndex] == searchItem)
+            {
+                return hashIndex;
+            }
+            if(probeFlag == QUADRATIC_PROBING)
+            {
+                hashPower = toPower(loopIndex, quadraticPower);
+                hashIndex = quadHashStorage + hashPower;
+            }
+            else
+            {
+                hashIndex++;
+            }
+            loopIndex++;
+        }
+        return ITEM_NOT_FOUND;
+    }
+    
+    public int generateHash(GenericData item)
+    {
+        int index,hashedDigits = 0;
+        String foundItem;
+        foundItem = findItem(item).toString();
+        for(index = 0; index < numHashDigits; index++)
+        {
+            hashedDigits += (int)foundItem.charAt(index);
+        }
+        return hashedDigits % tableSize;
+    }
+    
+    public String showHashTableStatus()
+    {
+        int index;
+        String formattedString ="";
+        for(index = 0; index < tableSize; index++)
+        {
+            if(tableArray[index] != null)
+            {
+                
+                formattedString += (tableArray[index].toString() + "\n");
+            }
+        }
+        return formattedString;
+    }
+    
+    public void clearHashTable()
+    {
+        int index;
+        tableArray = new Object[tableSize];
+        for(index = 0; index < tableSize; index++)
+        {
+            tableArray[index] = null;
+        }
+    }
+    
+    private int toPower(int base,
+                        int exponent)
+    {  
+        if(exponent == 1)
+        {
+            return base;
+        }
+        return toPower(base, exponent-1) * base;
+    }
+}

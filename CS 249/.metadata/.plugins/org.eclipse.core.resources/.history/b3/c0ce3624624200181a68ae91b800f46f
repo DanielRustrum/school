@@ -1,0 +1,106 @@
+package p10_Package;
+
+public class GenericHashClass<GenericData extends java.lang.Comparable<GenericData>> {
+    private final int DEFAULT_TABLE_SIZE = 10;
+    private final int DEFAULT_NUM_HASH_DIGITS = 6;
+    public final int ITEM_NOT_FOUND = -1;
+    public static final int LINEAR_PROBING = 101;
+    public static final int QUADRATIC_PROBING = 102;
+    private int numHashDigits;
+    private int tableSize;
+    private int probeFlag;
+    private Object[] tableArray;
+    
+    public GenericHashClass(int inTableSize,
+                            int inHashDigits,
+                            int inProbeFlag)
+    {
+        tableSize = inTableSize;
+        numHashDigits = inHashDigits;
+        probeFlag = inProbeFlag;
+        tableArray = new Object[tableSize];
+    }
+    
+    public GenericHashClass(GenericHashClass copied)
+    {
+        int index;
+        tableSize = copied.tableSize;
+        numHashDigits = copied.numHashDigits;
+        probeFlag = copied.probeFlag;
+        for(index = 0; index < tableSize; index++)
+        {
+            tableArray[index] = copied.tableArray[index];
+        }
+    }
+    
+    public boolean addItem(GenericData newItem)
+    {
+        
+    }
+    
+    public GenericData removeItem(GenericData toBeRemoved)
+    {
+        
+    }
+    
+    public GenericData findItem(GenericData searchItem)
+    {
+        
+    }
+    
+    private int findItemIndex(GenericData searchItem)
+    {
+        int hashIndex;
+        boolean foundItem = false;
+        hashIndex = generateHash(searchItem);
+        while(!foundItem && hashIndex < tableSize)
+        {
+            if(tableArray[hashIndex] == searchItem)
+            {
+                return hashIndex;
+            }
+            if(probeFlag == QUADRATIC_PROBING)
+            {
+                
+            }
+            else
+            {
+                
+            }
+            loopIndex++;
+        }
+        return 
+    }
+    
+    public int generateHash(GenericData item)
+    {
+        int index,hashedDigits = 0;
+        String foundItem;
+        foundItem = findItem(item).toString();
+        for(index = 0; index < numHashDigits; index++)
+        {
+            hashedDigits += (int)foundItem.charAt(index);
+        }
+        return hashedDigits % tableSize;
+    }
+    
+    public String showHashTableStatus()
+    {
+        
+    }
+    
+    public void clearHashTable()
+    {
+        tableArray = new Object[tableSize];
+    }
+    
+    private int toPower(int base,
+                        int exponent)
+    {  
+        if(exponent == 1)
+        {
+            return base;
+        }
+        return toPower(base, exponent-1) * base;
+    }
+}

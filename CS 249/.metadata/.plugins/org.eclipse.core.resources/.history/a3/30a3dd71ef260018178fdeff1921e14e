@@ -1,0 +1,152 @@
+package p6_Package;
+
+public class IteratorClassLL
+{
+    NodeClass headRef;
+    NodeClass cursorRef;
+    int FAILED_ACCESS = -999999;
+    
+    IteratorClassLL()
+    {
+        headRef = new NodeClass(9);
+    }
+    
+    IteratorClassLL(IteratorClassLL copied)
+    {
+        NodeClass workingRef = copied.headRef;
+        headRef = new NodeClass(copied.headRef.value);
+        cursorRef = headRef;
+        while(workingRef.nextNode != null)
+        {
+            NodeClass nextNewNode = new NodeClass(workingRef.nextNode.value);
+            cursorRef.nextNode = nextNewNode;
+            cursorRef = cursorRef.nextNode;
+            workingRef = workingRef.nextNode;
+        }
+
+    }
+    
+    public void insertPriorToIterator(int newValue)
+    {
+        movePrevious();
+        insertAfterIterator(newValue);
+        moveNext();
+        moveNext();
+    }
+    
+    public void insertAfterIterator(int newValue)
+    {
+        NodeClass newNode = new NodeClass(newValue);
+        newNode.nextNode = cursorRef.nextNode;
+        cursorRef.nextNode = newNode;
+    }
+    
+    public void moveNext()
+    {
+        cursorRef = cursorRef.nextNode;
+    }
+    
+    public void movePrevious()
+    {
+        movePreviousHelper(headRef);
+    }
+    
+    private void movePreviousHelper(NodeClass workingRef)
+    {
+        if(workingRef.nextNode == cursorRef)
+        {
+            cursorRef = workingRef;
+        }
+        else
+        {
+            movePreviousHelper(workingRef.nextNode);
+        }
+    }
+    
+    public int retrieveAtCurrent()
+    {
+        return cursorRef.value;
+    }
+    
+    public int removeAtCurrent()
+    {
+        int cursorValue = cursorRef.value;
+        NodeClass cursorMarker = cursorRef;
+        do
+        {
+            cursorRef.value = cursorRef.nextNode.value;
+            moveNext();
+        } while(cursorRef.nextNode != null);
+        cursorRef = cursorMarker;
+        return cursorValue;
+    }
+    
+    public void setToBeginning()
+    {
+        cursorRef = headRef;
+    }
+    
+    public void setToEnd()
+    {
+            setToEndHelper(headRef);
+    }
+    
+    private void setToEndHelper(NodeClass workingRef)
+    {
+        if(workingRef.nextNode != null)
+        {
+            cursorRef = workingRef.nextNode;
+            setToEndHelper(workingRef.nextNode);
+        }
+    }
+    
+    public boolean isAtEnd()
+    {
+        return cursorRef.nextNode == null;
+    }
+    
+    public boolean isAtBeginning()
+    {
+        return cursorRef == headRef;
+    }
+    
+    public boolean isEmpty()
+    {
+        return headRef == null;
+    }
+    
+    public void clear()
+    {
+        headRef = null;
+    }
+    
+    public String toString()
+    {
+        return toStringHelper(headRef);
+    }
+    
+    private String toStringHelper(NodeClass workingRef)
+    {
+        @SuppressWarnings("unused")
+        String combinedString = "";
+        if(workingRef.nextNode != null)
+        {
+            combinedString += toStringHelper(workingRef.nextNode);
+        }
+        if(workingRef == cursorRef)
+        {
+            return " |" + workingRef.value + "|";
+        }
+        return " " + workingRef.value;
+    }
+    
+    private class NodeClass
+    {
+        public int value;
+        public NodeClass nextNode;
+        NodeClass(int inVal)
+        {
+            value = inVal;
+        }
+    }
+}

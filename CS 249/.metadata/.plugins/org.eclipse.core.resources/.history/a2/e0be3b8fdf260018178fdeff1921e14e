@@ -1,0 +1,121 @@
+package p6_Package;
+
+public class IteratorClassLL
+{
+    NodeClass headRef;
+    NodeClass cursorRef;
+    int FAILED_ACCESS = -999999;
+    
+    IteratorClassLL()
+    {
+        headRef = null;
+    }
+    
+    IteratorClassLL(IteratorClassLL copied)
+    {
+        NodeClass workingRef = copied.headRef;
+        while(true)
+        {
+            if(workingRef.nextNode.nextNode == null)
+            {                
+                headRef = copied.headRef;
+                break;
+            }
+            else
+            {
+                
+                workingRef = workingRef.nextNode;
+            }
+        }
+
+    }
+    
+    public void insertPriorToIterator(int newValue)
+    {
+        
+    }
+    
+    public void insertAfterIterator(int newValue)
+    {
+        
+    }
+    
+    public void moveNext()
+    {
+        cursorRef = cursorRef.nextNode;
+    }
+    
+    public void movePrevious()
+    {
+        
+    }
+    
+    private void movePreviousHelper(NodeClass workingRef)
+    {
+        
+    }
+    
+    public int retrieveAtCurrent()
+    {
+        return cursorRef.value;
+    }
+    
+    public int removeAtCurrent()
+    {
+        
+    }
+    
+    public void setToBeginning()
+    {
+        cursorRef = headRef;
+    }
+    
+    public void setToEnd()
+    {
+            setToEndHelper(headRef);
+    }
+    
+    private void setToEndHelper(NodeClass workingRef)
+    {
+        if(workingRef.nextNode != null)
+        {
+            cursorRef = workingRef.nextNode;
+            setToEndHelper(workingRef.nextNode);
+        }
+    }
+    
+    public boolean isAtEnd()
+    {
+        return cursorRef.nextNode == null;
+    }
+    
+    public boolean isAtBeginning()
+    {
+        return cursorRef == headRef;
+    }
+    
+    public boolean isEmpty()
+    {
+        return headRef == null;
+    }
+    
+    public void clear()
+    {
+        headRef == null;
+    }
+    
+    public String toString()
+    {
+        
+    }
+    
+    private class NodeClass
+    {
+        public int value;
+        public NodeClass nextNode;
+        NodeClass(int inVal)
+        {
+            value = inVal;
+        }
+    }
+}

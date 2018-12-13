@@ -1,0 +1,15 @@
+package p6_Package;
+
+public class IteratorClassMain {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        IteratorClassLL ICLL = new IteratorClassLL();
+        ICLL.insertPriorToIterator();
+        ICLL.toString();
+
+    }
+
+}

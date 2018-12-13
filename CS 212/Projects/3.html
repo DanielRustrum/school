@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="error-display">
+        
+    </div>
+    <form id="project-form" action="./3_submit.html">
+        <!-- Username -->
+        <input id="username" class="input" type="text" placeholder="username" />
+        <!-- Name -->
+        <input id="name" class="input" type="text" placeholder="name" />
+        <!-- Phone-Number -->
+        <input id="number" class="input" type="text" placeholder="number" />
+        <!-- Email -->
+        <input id="email" class="input" type="text" placeholder="email" />
+        <!-- Password -->
+        <input id="password" class="input" type="text" placeholder="password" />
+        <!-- Confirm Password -->
+        <input id="confirm" class="input" type="text" placeholder="confirm password" />
+        <!-- Submit Button -->
+        <input id="submit-btn" class="input" type="submit">
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+
+            // Get Inputs
+            let usernameInput = document.querySelector("#username");
+            let nameInput = document.querySelector("#name");
+            let numberInput = document.querySelector("#number");
+            let emailInput = document.querySelector("#email");
+            let passwordInput = document.querySelector("#password");
+            let confirmInput = document.querySelector("#confirm");
+
+            // Check for Click Event
+            usernameInput.addEventListener("blur", (event) => {
+                checkField(usernameInput.value, "username", true);
+            });// Check for Click Event
+            nameInput.addEventListener("blur", (event) => {
+                checkField(nameInput.value, "name", true);
+            });// Check for Click Event
+            numberInput.addEventListener("blur", (event) => {
+                checkField(numberInput.value, "number", true);
+            });// Check for Click Event
+            emailInput.addEventListener("blur", (event) => {
+                checkField(emailInput.value, "Email", true);
+            });// Check for Click Event
+            passwordInput.addEventListener("blur", (event) => {
+                checkField(passwordInput.value, "Password", true);
+            });// Check for Click Event
+            confirmInput.addEventListener("blur", (event) => {
+                checkField(confirmInput.value, "Password Check", true);
+            });
+        });
+
+        // Validator Functions
+        function checkField(inputToBeChecked, type, required = false) {
+            // Error Varibles
+            let message = "";
+            let errorDiv = document.querySelector("#error-display");
+            
+            // Get All Fields In The Form
+            let form = document.querySelector("#project-form").action;
+            let usernameInput = document.querySelector("#username").value;
+            let nameInput = document.querySelector("#name").value;
+            let numberInput = document.querySelector("#number").value;
+            let emailInput = document.querySelector("#email").value;
+            let passwordInput = document.querySelector("#password").value;
+            let confirmInput = document.querySelector("#confirm").value;
+            
+            // Check If Input Is Required
+            if (required) {
+                if (inputToBeChecked === "") {
+                    message = "Field Required";
+                }
+            }
+
+            // Check If Mating Password Matches
+            if (type === "Password Check") {
+                // Compare Both Password Fields
+                if (passwordInput != confirmInput) {
+                    message = "Passwords do not match";
+                }
+            }
+
+            // Check If Password Meets Constraints
+            if (type === "Password") {
+                hasUpper = false;
+                hasNumber = false;
+                // Check Password If It Meets Constraints
+                if(inputToBeChecked.length < 8) {
+                    message = "Password Too Short";
+                }
+
+                for (let index = 0; index < inputToBeChecked.length; index++) {
+                    const element = inputToBeChecked.substr(index);
+                    if(element === element.toUpperCase()){
+                        hasUpper = true;
+                    }
+
+                    if(!(isNaN(element))) {
+                        hasNumber = true;
+                    }
+                }
+
+                if (!hasUpper || !hasNumber) {
+                    message = "Doesn't Contain Right Characters";
+                }
+            }
+
+            // Check If Email Is Vaild
+            if (type === "Email") {
+                hasAt = false;
+                hasPeriod = false; 
+                // Check If Email Is Vaild
+                for (let index = 0; index < inputToBeChecked.length; index++) {
+                    const element = inputToBeChecked.substr(index);
+                    if(element === '@'){
+                        hasAt = true;
+                    }
+                    if(element === '.'){
+                        hasPeriod = true;
+                    }
+
+                }
+                if (!hasAt || !hasPeriod) {
+                    message = "Not A Valid Email";
+                }
+            }
+
+            // Display Error 
+            errorDiv.innerHTML = message;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class DigitClass
+{
+	int base;
+	int[] digitArray;
+	int maxDigits;
+	int numDigits;
+	boolean overflow;
+	
+	public DigitClass(DigitClass copied)
+	{
+		this.base = copied.base;
+		this.digitArray = copied.digitArray;
+		this.maxDigits = copied.maxDigits;
+		this.numDigits = copied.numDigits;
+		this.overflow = copied.overflow;
+	}
+	
+	public DigitClass(int baseSet, int maxDigit, int decValSet)
+	{
+		this.base = baseSet;
+		this.maxDigits = maxDigit;
+		this.decToBase(decValSet);
+	}
+	
+	private int[] decToBase(int decValue)
+	{
+		int index = 0;
+		while(decValue >= 0)
+		{
+			this.digitArray[index] = decValue%this.base;
+			decValue /= this.base;
+			index++;
+		}
+		this.numDigits = index;
+		return this.digitArray;
+	}
+	
+	//
+	public String getValueAsBase()
+	{
+		return null;
+	}
+	
+	//base 10
+	
+	public int getValueAsDecimal()
+	{
+		return 5;
+	}
+	
+	public int[] initalizeDigits()
+	{
+		int index;
+		for(index = 0; index>=this.numDigits;index++)
+		{
+			this.digitArray[index] = 0;
+		}
+		return this.digitArray;
+	}
+	
+	int intToPower(int base, int exponent)
+	{
+		if(exponent > 0)
+		{
+			return base*this.intToPower(base,exponent-1);
+		}
+		return 1;
+	}
+	
+	public boolean isZero()
+	{
+		return(this.numDigits <= 1 && this.digitArray[0] == 0);
+	}
+}

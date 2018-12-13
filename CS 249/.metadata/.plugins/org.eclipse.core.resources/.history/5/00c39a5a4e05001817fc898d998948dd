@@ -1,0 +1,47 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class ArithmeticClass {
+	
+	//No Action
+	public ArithmeticClass()
+	{
+		
+	}
+	
+	public DigitClass addRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass subtractRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass multiplyRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass divideRegistersToQuotient(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass divideRegistersToRemainder(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	private int getMax(int valOne, int valTwo)
+	{
+		return 1;
+	}
+}

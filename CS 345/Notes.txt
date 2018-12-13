@@ -1,0 +1,79 @@
+
+Day 1 08/28
+------------
+
+-- Spectrum Of Stuff --
+
+- Databases -> Reletional Databases
+- Legacy -> concentrate on:
+                files/file system
+                "Islands" of Info.
+                "Anomalies
+
+- Data(base) Modeling -> Relational Model & ERM
+- SQL
+- Other:
+    -> GUI -> Databases
+    -> Security
+
+
+-- Flipped Class --
+
+- Take Notes
+- Not much of a lecture
+- Take an active role
+
+- no email or bblearn, slack only and prefered
+- attendence, 3 freebies otherwise its 2-3%
+
+Day 2 08/30/18
+----------------------
+
+- Miss a class: Retain Evidence, write message to absence
+
+- Boring Stuff:
+    Data & Information:
+        110110011001100 <- Raw Data, No Context
+        We just have the data not the info. We have the context and metadata
+        Metadata <- Data about data
+        Data Dictionary <- Contains metadata
+
+        DBMS <- Collection of software to take care of data
+        OS <- ...
+        Application Programs <- People, Procedures/ Processes, ...
+        Advantages:
+            Security
+            Help with Redunecncy
+            Dev Cost
+            Backup and Recovery
+            Data Integrety
+            little data inconsistancies
+        Types Of DB:    
+        Types Needs a criteria, what it for how is it used, centralized decenteralized
+        Not all data is viable for DB
+
+        Importance
+            Pretty much unforgivable, really hard to untangle and transfer to a solid design
+        
+        History: Files & File Systems
+            Normalization: results in a bunch of table that are interconnected
+            May be better to read but is a pain to read
+            Problems:
+                Data intertwined together on one table
+                Adhoc quieries are a nightmare
+                more programming, more selective programs
+                code breaks, if there are any changes to data
+                Field definitions and naming conventions
+                Redundencies -> islands of info. lead us to change info in multiple places, inconsistancies, and anomolies
+            Anomolies: insertion, update, deletion
+                
+Day 7 09/18/18
+--------------------------
+
+- Existent dependant and primary key is dervied from parent key 
+- Last Class: Painters, Paintings, and Galleries
+- Indexing: saving the index of the found data
+
+
+Day so and sso
+--------------------------

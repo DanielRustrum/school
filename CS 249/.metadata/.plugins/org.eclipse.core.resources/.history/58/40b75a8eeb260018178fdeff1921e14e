@@ -1,0 +1,15 @@
+package p6_Package;
+
+public class IteratorClassMain {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        QueueClassLL qc = new QueueClassLL();
+        qc.enqueue(55);
+        qc.toString();
+
+    }
+
+}

@@ -1,0 +1,289 @@
+package p7_Package;
+
+/**
+ * 
+ * @author daniel_rustrum
+ *
+ * @param <GenericData>
+ */
+public class GenericBSTClass<GenericData extends java.lang.Comparable<GenericData>> {
+
+    /**
+     * Root of BST
+     */
+    private BST_Node BST_Root;
+    /**
+     * Traverse code - preorder
+     */
+    public static final int PREORDER_TRAVERSE = 101;
+    /**
+     * Traverse code - inorder
+     */
+    public static final int INORDER_TRAVERSE = 102;
+    /**
+     * Traverse code - postorder
+     */
+    public static final int POSTORDER_TRAVERSE = 103;
+    
+    /**
+     * Default Constructor
+     */
+    public GenericBSTClass()
+    {
+        BST_Root = new BST_Node(null);
+        BST_Root.leftChildRef = new BST_Node(null);
+        BST_Root.rightChildRef = new BST_Node(null);
+    }
+    
+    /**
+     * 
+     * @param inData
+     */
+    public void insert(GenericData inData)
+    {
+        insertHelper(BST_Root, inData);
+    }
+    
+    /**
+     * 
+     * @param localRoot
+     * @param inData
+     */
+    private void insertHelper(BST_Node localRoot, GenericData inData)
+    {
+        if(localRoot.nodeData != null)
+        {
+            if(localRoot.nodeData.compareTo(inData) < 0)
+            {
+                insertHelper(localRoot.leftChildRef, inData);
+            }
+            else if(localRoot.nodeData.compareTo(inData) > 0)
+            {
+                insertHelper(localRoot.rightChildRef, inData);
+            }
+        }
+        else
+        {       
+            localRoot.nodeData = inData;
+            localRoot.leftChildRef = new BST_Node(null);
+            localRoot.rightChildRef = new BST_Node(null);
+        }
+    }
+    
+    /**
+     * 
+     * @param inData
+     * @return
+     */
+    public GenericData removeNode(GenericData inData)
+    {
+        GenericData searched = search(inData);
+        BST_Node removed;
+        if(searched != null)
+        {
+            removed = removeNodeHelper(BST_Root, inData);
+            return removed.nodeData;
+        }
+        return null;
+    }
+
+    /**
+     * 
+     * @param localRoot
+     * @param outData
+     * @return
+     */
+    private BST_Node removeNodeHelper(BST_Node localRoot, GenericData outData)
+    {
+        BST_Node removedNode = localRoot;
+        if(localRoot.nodeData.compareTo(outData) < 0)
+        {
+            removeNodeHelper(localRoot.leftChildRef, outData);
+        }
+        if(localRoot.nodeData.compareTo(outData) > 0)
+        {
+            removeNodeHelper(localRoot.rightChildRef, outData);
+        }
+        removeNodeFromTree(localRoot);
+        return removedNode;
+    }
+    
+    /**
+     * 
+     * @param localRoot
+     * @return
+     */
+    private BST_Node removeNodeFromTree(BST_Node localRoot)
+    {
+        BST_Node maxLocalNode;
+
+        // No Children
+        if(localRoot.leftChildRef == null && localRoot.rightChildRef == null)
+        {
+            return localRoot = null;
+        }
+        // Single Child
+        if(localRoot.leftChildRef == null)
+        {
+            return localRoot = localRoot.rightChildRef;
+        }
+        if(localRoot.rightChildRef == null)
+        {
+            return localRoot = localRoot.leftChildRef;
+        }
+        
+        // Two Children
+        maxLocalNode = removeFromMax(localRoot, localRoot);
+        localRoot = maxLocalNode;
+        return localRoot;
+         
+    }
+    
+    /**
+     * 
+     * @param maxParent
+     * @param maxLoc
+     * @return
+     */
+    private BST_Node removeFromMax(BST_Node maxParent, BST_Node maxLoc)
+    {
+        if(maxLoc.leftChildRef.rightChildRef != null)
+        {
+            return maxLoc.leftChildRef.rightChildRef;
+        }
+        return maxLoc.leftChildRef;
+    }
+    
+    /**
+     * 
+     * @param searchData
+     * @return
+     */
+    public GenericData search(GenericData searchData)
+    {
+        return searchHelper(BST_Root, searchData);
+    }
+    
+    /**
+     * 
+     * @param localRoot
+     * @param searchData
+     * @return
+     */
+    private GenericData searchHelper(BST_Node localRoot, GenericData searchData)
+    {
+        if(localRoot.nodeData == null)
+        {
+            return null;
+        }
+        if(localRoot.nodeData.compareTo(searchData) < 0)
+        {
+            return searchHelper(localRoot.leftChildRef, searchData);
+        }
+        if(localRoot.nodeData.compareTo(searchData) > 0)
+        {
+            return searchHelper(localRoot.rightChildRef, searchData);
+        }
+        return localRoot.nodeData;
+    }
+    
+    /**
+     * 
+     * @param traverseCode
+     */
+    public void displayTree(int traverseCode)
+    {
+        if(traverseCode == PREORDER_TRAVERSE)
+        {
+            displayPreOrder(BST_Root);
+        }
+        else if(traverseCode == INORDER_TRAVERSE)
+        {
+            displayInOrder(BST_Root);
+        }
+        else if(traverseCode == POSTORDER_TRAVERSE)
+        {
+            displayPostOrder(BST_Root);
+        }
+        else
+        {
+           System.out.println("You entered the wrong print code.");
+        }
+    }
+    
+    /**
+     * 
+     * @param localRoot
+     */
+    private void displayPreOrder(BST_Node localRoot)
+    {
+        if(localRoot.nodeData != null)
+        {
+            System.out.println("" + localRoot.nodeData);
+            displayPreOrder(localRoot.leftChildRef);
+            displayPreOrder(localRoot.rightChildRef);
+        }
+    }
+    
+    /**
+     *
+     * @param localRoot
+     */
+    private void displayPostOrder(BST_Node localRoot)
+    {
+        if(localRoot.nodeData != null)
+        {
+            displayPostOrder(localRoot.leftChildRef);
+            displayPostOrder(localRoot.rightChildRef);
+            System.out.println("" + localRoot.nodeData);
+        }
+    }
+    
+    /**
+     * 
+     * @param localRoot
+     */
+    private void displayInOrder(BST_Node localRoot)
+    {
+        if(localRoot.nodeData != null)
+        {
+            displayInOrder(localRoot.leftChildRef);
+            System.out.println("" + localRoot.nodeData);
+            displayInOrder(localRoot.rightChildRef);
+        }
+    }
+    
+    /**
+     * 
+     */
+    public void clearTree()
+    {
+        BST_Root = null;
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public boolean isEmpty()
+    {
+        return BST_Root == null;
+    }
+
+    /**
+     * Binary Search Tree node class for managing generic data
+     * @author daniel_rustrum
+     *
+     */
+    private class BST_Node {
+        public BST_Node leftChildRef = null;
+        private GenericData nodeData = null;
+        public BST_Node rightChildRef = null;
+        
+        BST_Node(GenericData inData)
+        {
+            nodeData = inData;
+        }
+    }
+    
+}

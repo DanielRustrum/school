@@ -1,0 +1,156 @@
+/**
+ * 
+ */
+package project_1;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class ArithmeticClass {
+	
+
+	public ArithmeticClass()
+	{
+		//No Action
+	}
+	
+	public DigitClass addRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		// Variables For Adding
+		int biggerNumDigit;
+		int biggerMaxDigit;
+		int[] tempNumberHolder;
+		DigitClass addingResult;
+		
+		int sumOfRegisters = 0;
+		int carryOfRegisters = 0;
+		int index = 0;
+		tempNumberHolder = register_1.digitArray;
+		
+		// Check if bases are the same
+		if(register_1.base != register_2.base){
+			return null;
+		}
+		
+		//Get Bigger NumDigit
+		biggerNumDigit = getMax(register_1.numDigits,register_2.numDigits);
+		
+		// Get Bigger MaxDigit
+		biggerMaxDigit = getMax(register_1.maxDigits,register_2.maxDigits);
+
+		//Add Numbers
+		while(index<biggerNumDigit)
+		{
+			// Add numbers at position With Overflow
+			sumOfRegisters = register_1.digitArray[index] + register_2.digitArray[index];
+			
+			// Add Overflow
+			sumOfRegisters += carryOfRegisters;
+			
+			// Get Remainder
+			tempNumberHolder[index] = sumOfRegisters % register_1.base;
+			
+			// Get Carry
+			carryOfRegisters = sumOfRegisters / register_1.base;
+			
+			// Increment index
+			index++;
+		}
+		
+		//Copy DigitClass
+		addingResult = new DigitClass(register_1);
+		
+		//Determine If there still is overflow and Surpasses MaxDigit
+		if(carryOfRegisters != 0 && index > biggerMaxDigit)
+		{
+				addingResult.overflow = true;
+			
+		}
+		
+		// Set digitArray and maxDigit
+		addingResult.maxDigits = biggerMaxDigit;
+		addingResult.digitArray = tempNumberHolder;
+		
+		// Return Copied DigitClass
+		return addingResult;
+	}
+	
+	public DigitClass subtractRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		// Variables For Subtraction
+		int biggerNumDigit;
+		int biggerMaxDigit;
+		int biggerNumberAtPostion;
+		int[] tempNumberHolder;
+		DigitClass subtractionResult;
+		boolean failure_one;
+		boolean failure_two;
+		
+		int differenceOfRegisters = 0;
+		boolean borrowFlag = false;
+		int index = 0;
+		tempNumberHolder = register_1.digitArray;
+		
+		//Get Bigger NumDigit
+		biggerNumDigit = getMax(register_1.numDigits,register_2.numDigits);
+		
+		// Get Bigger MaxDigit
+		biggerMaxDigit = getMax(register_1.maxDigits,register_2.maxDigits);
+
+		// Check if bases are the same and Register 2 is greater
+		failure_one = register_1.base != register_2.base;
+		failure_two = register_2.numDigits == biggerNumDigit;
+		if(failure_one && failure_two){
+			return null;
+		}
+		
+		//Add Numbers
+		while(index<biggerNumDigit)
+		{
+			//Determine if Barrow is needed
+			biggerNumberAtPostion = getMax(register_1.digitArray[index],register_2.digitArray[index]);
+			if(biggerNumberAtPostion == register_2.digitArray[index])
+			{
+				borrowFlag = true;
+			}
+			
+			// Increment index
+			index++;
+		}
+		
+		//Copy DigitClass
+		subtractionResult = new DigitClass(register_1);
+		
+		// Set digitArray and maxDigit
+		subtractionResult.maxDigits = biggerMaxDigit;
+		subtractionResult.digitArray = tempNumberHolder;
+		
+		// Return Copied DigitClass
+		return subtractionResult;
+	}
+	
+	public DigitClass multiplyRegisters(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass divideRegistersToQuotient(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	public DigitClass divideRegistersToRemainder(DigitClass register_1, DigitClass register_2)
+	{
+		return null;
+	}
+	
+	private int getMax(int valOne, int valTwo)
+	{
+		if(valOne > valTwo)
+		{
+			return valOne;
+		}
+		return valTwo;
+	}
+}

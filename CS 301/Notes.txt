@@ -1,0 +1,70 @@
+
+Day 2  8/29/18
+-----------------
+
+- Ethics: 
+    -What is the right thing
+    -Assumes eople are rational and make choices
+    -rules to follow intercactions and effects
+
+    -Deontological
+    -Utilitarianism
+    -Natural Rights
+
+Day 3 9/5/18
+-----------------
+
+- Privacy:
+    - Accessing Accounts?
+    - Gary Kovacs: Tracking the trackers (Ted Talk)
+    - Fredom from intrusion
+    - Control of info.
+    - Freedom of surveillence
+
+    Several Categories:
+    - intention, institutional
+    - unauthorized use
+    - theft
+    - Inadvertent
+    - Our own actions
+
+    New Risk:
+    - Gov. and private Databases
+    - Sophisticated tools
+    - Vulnerability
+
+
+
+Day 4 9/10/18
+------------------------
+
+- Privacy:
+    - Regulation on cookies
+    - Regulation around privacy:
+        - Skim chapter 2 and 1
+        - leaks will happen
+    - software is complex
+    - Electronic frontier foundation
+    - 3 terms:
+        - personal info: any information relating to an individual person.
+        - informed consent: users being aware of what information is collected and how it is used.
+        - invisible information gathering: collection of personal information about a user without the user's knowledge. (more concerned)
+
+    - terms:
+        - cookies, secondary use, data mining
+        - computer matching, computer profiling
+        - opt out, opt in
+        - "optimize" usually a red flag
+
+    - 7 bullet points
+    - 4th amendment:
+        - 1990 include tech, sets limits on government
+        - info. no longer inside house.
+        - digital law need to be robust enough to search anything
+
+Day 6  9/17/18
+------------------------
+
+    - ACM Style Guide
+    - Tools for parents
+    - 

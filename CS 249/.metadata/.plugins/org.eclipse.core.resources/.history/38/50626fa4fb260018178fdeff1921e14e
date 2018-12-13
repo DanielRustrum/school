@@ -1,0 +1,195 @@
+package p6_Package;
+
+/**
+ * @author daniel_rustrum
+ *
+ */
+public class IteratorClassLL
+{
+    /**
+     * 
+     */
+    NodeClass headRef;
+    /**
+     * 
+     */
+    NodeClass cursorRef;
+    /**
+     * 
+     */
+    private final int FAILED_ACCESS = -999999;
+    
+    /**
+     * Defualt Constructor
+     */
+    IteratorClassLL()
+    {
+        headRef = new NodeClass(9);
+        cursorRef = headRef;
+    }
+    
+    /**
+     * Copy Constructor
+     * 
+     * @param copied
+     */
+    IteratorClassLL(IteratorClassLL copied)
+    {
+        NodeClass workingRef = copied.headRef;
+        headRef = new NodeClass(copied.headRef.value);
+        cursorRef = headRef;
+        while(workingRef.nextNode != null)
+        {
+            NodeClass nextNewNode = new NodeClass(workingRef.nextNode.value);
+            cursorRef.nextNode = nextNewNode;
+            cursorRef = cursorRef.nextNode;
+            workingRef = workingRef.nextNode;
+        }
+
+    }
+    
+    public void insertPriorToIterator(int newValue)
+    {
+        movePrevious();
+        insertAfterIterator(newValue);
+        moveNext();
+        moveNext();
+    }
+    
+    public void insertAfterIterator(int newValue)
+    {
+        NodeClass newNode = new NodeClass(newValue);
+        newNode.nextNode = cursorRef.nextNode;
+        cursorRef.nextNode = newNode;
+    }
+    
+    public void moveNext()
+    {
+        if(cursorRef.nextNode != null)
+        {
+            cursorRef = cursorRef.nextNode;            
+        }
+    }
+    
+    public void movePrevious()
+    {
+        NodeClass workingRef = headRef;
+        while(workingRef.nextNode != null)
+        {
+            if(workingRef.nextNode == cursorRef)
+            {
+                cursorRef = workingRef;            
+            }
+            else
+            {
+                workingRef = workingRef.nextNode;
+            }
+        }
+    }
+    
+    private void movePreviousHelper(NodeClass workingRef)
+    {
+        // This doesn't seem to work when using workingRef as a parameter
+    }
+    
+    public int retrieveAtCurrent()
+    {
+        if(isEmpty())
+        {
+            return FAILED_ACCESS;
+        }
+        return cursorRef.value;
+    }
+    
+    public int removeAtCurrent()
+    {
+        if(isEmpty())
+        {
+            return FAILED_ACCESS;
+        }
+        int cursorValue = cursorRef.value;
+        if(cursorRef.nextNode != null)
+        {
+            movePrevious();
+            cursorRef.nextNode = cursorRef.nextNode.nextNode;
+        }
+        else
+        {
+            cursorRef = null;
+        }
+        return cursorValue;
+    }
+    
+    public void setToBeginning()
+    {
+        cursorRef = headRef;
+    }
+    
+    public void setToEnd()
+    {
+         setToEndHelper(headRef);
+    }
+    
+    private void setToEndHelper(NodeClass workingRef)
+    {
+        if(workingRef.nextNode != null)
+        {
+            cursorRef = workingRef.nextNode;
+            setToEndHelper(workingRef.nextNode);
+        }
+    }
+    
+    public boolean isAtEnd()
+    {
+        return cursorRef.nextNode == null;
+    }
+    
+    public boolean isAtBeginning()
+    {
+        return cursorRef == headRef;
+    }
+    
+    public boolean isEmpty()
+    {
+        return headRef == null;
+    }
+    
+    public void clear()
+    {
+        headRef = null;
+    }
+    
+    public String toString()
+    {
+        return toStringHelper(headRef);
+    }
+    
+    private String toStringHelper(NodeClass workingRef)
+    {
+        @SuppressWarnings("unused")
+        String combinedString = "";
+        if(cursorRef.nextNode == null)
+        {
+            System.out.println(workingRef.nextNode);
+            combinedString += toStringHelper(workingRef.nextNode);
+        }
+        // fine
+        if(workingRef == cursorRef)
+        {
+            return " |" + workingRef.value + "|";
+        }
+        return " " + workingRef.value;
+    }
+    
+    
+    
+    private class NodeClass
+    {
+        public int value;
+        public NodeClass nextNode = null;
+        NodeClass(int inVal)
+        {
+            value = inVal;
+        }
+    }
+}

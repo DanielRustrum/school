@@ -1,0 +1,9 @@
+package p10_Package;
+
+public class GenericHashClass<GenericData extends java.lang.Comparable<GenericData>> {
+    private final int DEFAULT_TABLE_SIZE = 10;
+    private final int DEFAULT_NUM_HASH_DIGITS = 6;
+    public final int ITEM_NOT_FOUND = -1;
+    public static final int LINEAR_PROBING = 101;
+    public static final int QUADRATIC_PROBING = 102;
+}

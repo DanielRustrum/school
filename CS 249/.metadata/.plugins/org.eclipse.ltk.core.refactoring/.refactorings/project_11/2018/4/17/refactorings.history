@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;p11_Package.GraphClassAssignment.java&apos; to &apos;GraphClass.java&apos;&#x0A;- Original project: &apos;project_11&apos;&#x0A;- Original element: &apos;p11_Package.GraphClassAssignment.java&apos;&#x0A;- Renamed element: &apos;p11_Package.GraphClass.java&apos;" description="Rename compilation unit &apos;GraphClassAssignment.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;p11_Package{GraphClassAssignment.java" name="GraphClass.java" references="false" stamp="1524566087132" version="1.0"/>
+</session>

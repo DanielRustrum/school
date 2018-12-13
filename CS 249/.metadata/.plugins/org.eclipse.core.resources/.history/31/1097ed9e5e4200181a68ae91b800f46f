@@ -1,0 +1,66 @@
+package p10_Package;
+
+public class GenericHashClass<GenericData extends java.lang.Comparable<GenericData>> {
+    private final int DEFAULT_TABLE_SIZE = 10;
+    private final int DEFAULT_NUM_HASH_DIGITS = 6;
+    public final int ITEM_NOT_FOUND = -1;
+    public static final int LINEAR_PROBING = 101;
+    public static final int QUADRATIC_PROBING = 102;
+    private int numHashDigits;
+    private int tableSize;
+    private int probeFlag;
+    private Object[] tableArray;
+    
+    public GenericHashClass(int inTableSize,
+                            int inHashDigits,
+                            int inProbeFlag)
+    {
+        
+    }
+    
+    public GenericHashClass(GenericHashClass copied)
+    {
+        
+    }
+    
+    public boolean addItem(GenericData newItem)
+    {
+        
+    }
+    
+    public GenericData removeItem(GenericData toBeRemoved)
+    {
+        
+    }
+    
+    public GenericData findItem(GenericData searchItem)
+    {
+        
+    }
+    
+    private int findItemIndex(GenericData searchItem)
+    {
+        
+    }
+    
+    public int generateHash(GenericData item)
+    {
+        
+    }
+    
+    public String showHashTableStatus()
+    {
+        
+    }
+    
+    public void clearHashTable()
+    {
+        
+    }
+    
+    private int toPower(int base,
+                        int exponent)
+    {  
+        
+    }
+}

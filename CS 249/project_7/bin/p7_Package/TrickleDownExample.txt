@@ -1,0 +1,353 @@
+Shifting after removal of Y
+                                D
+                X                               W
+        T               U               M               R
+    P       Q       S       G       A       L       N       I
+  C   B   H   J   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - - - -                                                
+                                X
+                D                               W
+        T               U               M               R
+    P       Q       S       G       A       L       N       I
+  C   B   H   J   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - - - -                                                
+                                X
+                U                               W
+        T               D               M               R
+    P       Q       S       G       A       L       N       I
+  C   B   H   J   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - - - -                                                
+                                X
+                U                               W
+        T               S               M               R
+    P       Q       D       G       A       L       N       I
+  C   B   H   J   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - - - -                                                
+
+Letter: Y removed.
+
+Shifting after removal of X
+                                J
+                U                               W
+        T               S               M               R
+    P       Q       D       G       A       L       N       I
+  C   B   H   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - -                                                    
+                                W
+                U                               J
+        T               S               M               R
+    P       Q       D       G       A       L       N       I
+  C   B   H   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - -                                                    
+                                W
+                U                               R
+        T               S               M               J
+    P       Q       D       G       A       L       N       I
+  C   B   H   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - -                                                    
+                                W
+                U                               R
+        T               S               M               N
+    P       Q       D       G       A       L       J       I
+  C   B   H   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - - - -                                                    
+
+Letter: X removed.
+
+Shifting after removal of W
+                                H
+                U                               R
+        T               S               M               N
+    P       Q       D       G       A       L       J       I
+  C   B   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - -                                                        
+                                U
+                H                               R
+        T               S               M               N
+    P       Q       D       G       A       L       J       I
+  C   B   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - -                                                        
+                                U
+                T                               R
+        H               S               M               N
+    P       Q       D       G       A       L       J       I
+  C   B   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - -                                                        
+                                U
+                T                               R
+        Q               S               M               N
+    P       H       D       G       A       L       J       I
+  C   B   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - - - -                                                        
+
+Letter: W removed.
+
+Shifting after removal of U
+                                B
+                T                               R
+        Q               S               M               N
+    P       H       D       G       A       L       J       I
+  C   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - -                                                            
+                                T
+                B                               R
+        Q               S               M               N
+    P       H       D       G       A       L       J       I
+  C   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - -                                                            
+                                T
+                S                               R
+        Q               B               M               N
+    P       H       D       G       A       L       J       I
+  C   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - -                                                            
+                                T
+                S                               R
+        Q               G               M               N
+    P       H       D       B       A       L       J       I
+  C   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+ - -                                                            
+
+Letter: U removed.
+
+Shifting after removal of T
+                C
+        S               R
+    Q       G       M       N
+  P   H   D   B   A   L   J   I
+ - - - - - - - - - - - - - - - -
+                S
+        C               R
+    Q       G       M       N
+  P   H   D   B   A   L   J   I
+ - - - - - - - - - - - - - - - -
+                S
+        Q               R
+    C       G       M       N
+  P   H   D   B   A   L   J   I
+ - - - - - - - - - - - - - - - -
+                S
+        Q               R
+    P       G       M       N
+  C   H   D   B   A   L   J   I
+ - - - - - - - - - - - - - - - -
+
+Letter: T removed.
+
+Shifting after removal of S
+                I
+        Q               R
+    P       G       M       N
+  C   H   D   B   A   L   J   -
+ - - - - - - - - - - - - - -    
+                R
+        Q               I
+    P       G       M       N
+  C   H   D   B   A   L   J   -
+ - - - - - - - - - - - - - -    
+                R
+        Q               N
+    P       G       M       I
+  C   H   D   B   A   L   J   -
+ - - - - - - - - - - - - - -    
+                R
+        Q               N
+    P       G       M       J
+  C   H   D   B   A   L   I   -
+ - - - - - - - - - - - - - -    
+
+Letter: S removed.
+
+Shifting after removal of R
+                I
+        Q               N
+    P       G       M       J
+  C   H   D   B   A   L   -   -
+ - - - - - - - - - - - -        
+                Q
+        I               N
+    P       G       M       J
+  C   H   D   B   A   L   -   -
+ - - - - - - - - - - - -        
+                Q
+        P               N
+    I       G       M       J
+  C   H   D   B   A   L   -   -
+ - - - - - - - - - - - -        
+
+Letter: R removed.
+
+Shifting after removal of Q
+                L
+        P               N
+    I       G       M       J
+  C   H   D   B   A   -   -   -
+ - - - - - - - - - -            
+                P
+        L               N
+    I       G       M       J
+  C   H   D   B   A   -   -   -
+ - - - - - - - - - -            
+
+Letter: Q removed.
+
+Shifting after removal of P
+                A
+        L               N
+    I       G       M       J
+  C   H   D   B   -   -   -   -
+ - - - - - - - -                
+                N
+        L               A
+    I       G       M       J
+  C   H   D   B   -   -   -   -
+ - - - - - - - -                
+                N
+        L               M
+    I       G       A       J
+  C   H   D   B   -   -   -   -
+ - - - - - - - -                
+
+Letter: P removed.
+
+Shifting after removal of N
+                B
+        L               M
+    I       G       A       J
+  C   H   D   -   -   -   -   -
+ - - - - - -                    
+                M
+        L               B
+    I       G       A       J
+  C   H   D   -   -   -   -   -
+ - - - - - -                    
+                M
+        L               J
+    I       G       A       B
+  C   H   D   -   -   -   -   -
+ - - - - - -                    
+
+Letter: N removed.
+
+Shifting after removal of M
+                D
+        L               J
+    I       G       A       B
+  C   H   -   -   -   -   -   -
+ - - - -                        
+                L
+        D               J
+    I       G       A       B
+  C   H   -   -   -   -   -   -
+ - - - -                        
+                L
+        I               J
+    D       G       A       B
+  C   H   -   -   -   -   -   -
+ - - - -                        
+                L
+        I               J
+    H       G       A       B
+  C   D   -   -   -   -   -   -
+ - - - -                        
+
+Letter: M removed.
+
+Shifting after removal of L
+                D
+        I               J
+    H       G       A       B
+  C   -   -   -   -   -   -   -
+ - -                            
+                J
+        I               D
+    H       G       A       B
+  C   -   -   -   -   -   -   -
+ - -                            
+
+Letter: L removed.
+
+Shifting after removal of J
+        C
+    I       D
+  H   G   A   B
+ - - - - - - - -
+        I
+    C       D
+  H   G   A   B
+ - - - - - - - -
+        I
+    H       D
+  C   G   A   B
+ - - - - - - - -
+
+Letter: J removed.
+
+Shifting after removal of I
+        B
+    H       D
+  C   G   A   -
+ - - - - - -    
+        H
+    B       D
+  C   G   A   -
+ - - - - - -    
+        H
+    G       D
+  C   B   A   -
+ - - - - - -    
+
+Letter: I removed.
+
+Shifting after removal of H
+        A
+    G       D
+  C   B   -   -
+ - - - -        
+        G
+    A       D
+  C   B   -   -
+ - - - -        
+        G
+    C       D
+  A   B   -   -
+ - - - -        
+
+Letter: H removed.
+
+Shifting after removal of G
+        B
+    C       D
+  A   -   -   -
+ - -            
+        D
+    C       B
+  A   -   -   -
+ - -            
+
+Letter: G removed.
+
+Shifting after removal of D
+    A
+  C   B
+ - - - -
+    C
+  A   B
+ - - - -
+
+Letter: D removed.
+
+Shifting after removal of C
+    B
+  A   -
+ - -    
+
+Letter: C removed.
+
+Shifting after removal of B
+  A
+ - -
+
+Letter: B removed.
+
+Letter: A removed.
