@@ -372,3 +372,6 @@ what is the runtime for 20 elements?<br><br>
 T(n) = (-)(n^(c_1))<br>
 T(n') = (-)(n'^(C_1)) for n' = (c_2)n<br>
 T(n') = (-)((c_2n)^(c_1)) = (-)(C_2^C_1*n^C_1) = c_2^c_1T(n)
+
+---
+## After The Loss, Day 10?
