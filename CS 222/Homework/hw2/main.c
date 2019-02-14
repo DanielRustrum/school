@@ -15,11 +15,11 @@
 int main() {
     bool isrunning = true;
     char letter;
-    File *fileptr;
-    fopen(FILE_NAME, fileptr);
+    FILE *fileptr;
+    fileptr = fopen(FILE_NAME, "w");
 
     do {
-        printf("Enter the grades a,b,c,d,f (q to quit)");
+        printf("Enter A grade A,B,C,D,F (q to quit): ");
         scanf("%c", &letter);
         switch (letter)
         {
@@ -27,31 +27,30 @@ int main() {
                 isrunning = false;
                 break;
             case 'A':
-                printf("Very Good!");
-                fprintf(fileptr,"Very Good!");
+                printf("Very Good!\n");
+                fprintf(fileptr,"Very Good!\n");
                 break;
             case 'B':
-                printf("Good!");
-                fprintf(fileptr,"Good!");
+                printf("Good!\n");
+                fprintf(fileptr,"Good!\n");
                 break;
             case 'C':
-                printf("Okay!");
-                fprintf(fileptr,"Okay!");
+                printf("Okay!\n");
+                fprintf(fileptr,"Okay!\n");
                 break;
             case 'D':
-                printf("Doomed!");
-                fprintf(fileptr,"Doomed!");
+                printf("Doomed!\n");
+                fprintf(fileptr,"Doomed!\n");
                 break;
             case 'F':
-                printf("Doomed!");
-                fprintf(fileptr,"Doomed!");
+                printf("Doomed!\n");
+                fprintf(fileptr,"Doomed!\n");
                 break;
             default:
-                isrunning = false;
                 break;
         }
     } while(isrunning);
-    
+  
     fclose(fileptr);
     return 0;
 }
